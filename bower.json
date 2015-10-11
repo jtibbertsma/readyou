@@ -1,0 +1,13 @@
+{
+  "name": "readyou",
+  "version": "0.0.0",
+  "authors": [
+    "Joseph Tibbertsma <josephtibbertsma@gmail.com>"
+  ],
+  "description": "Markdown editor",
+  "main": "app.js",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4"
+  }
+}
