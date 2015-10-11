@@ -1,8 +1,25 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body {
+  height: 100%;
 }
 
-a {
-  color: #00B7FF;
+.top-navbar {
+  position: relative;
+  height: 44px;
+  background: #4679bd;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidebar {
+  float: left;
+  width: 217px;
+  height: 100%;
+}
+
+.main {
+  margin-left: 217px;
+  background: #DDD;
+  height: 100%;
+  width: 100%;
 }

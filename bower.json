@@ -8,6 +8,7 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "angular": "~1.4"
+    "angular": "~1.4",
+    "normalize.css": "~3.0"
   }
 }
