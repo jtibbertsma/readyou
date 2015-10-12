@@ -23,7 +23,6 @@ html, body {
   position: absolute;
   margin-left: 217px;
   margin-top: 44px;
-  padding: 8px;
   background: #f5f5f5;
   top: 0px;
   bottom: 0px;
@@ -31,16 +30,25 @@ html, body {
   right: 0px;
 }
 
-.content-box {
+.left-box, .right-box {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
   background: white;
-  float: left;
-  border: thin solid #666;
-  height: 100%;
-  width: 49%;
+  border: thin solid #aaa;
+  width: 48.6%;
+}
+
+.left-box {
+  left: 10px;
+}
+
+.right-box {
+  right: 8px;
 }
 
 .middle {
-  float: left;
+  position: absolute;
   height: 100%;
-  width: 8px;
+  width: 10px;
 }
