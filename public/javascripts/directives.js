@@ -4,22 +4,35 @@ angular.module('ReadyouDirectives', [])
       return {
         templateUrl: 'partials/resizable-boxes',
         link: function (scope, element, attrs) {
-          var children = element.children(),
-              left = angular.element(children[0]),
-              middle = angular.element(children[1]),
-              right = angular.element(children[2]),
-              totalWidth = element[0].offsetWidth,
-              middlePos = Math.floor(totalWidth / 2) - 5;
+          var left = angular.element(element.children()[0]),
+              middle = angular.element(element.children()[1]),
+              right = angular.element(element.children()[2]);
+              outerWidth, middlePos;
 
-          middle.css('left', '' + middlePos + 'px');
-          resize();
+          setOuterWidth();
+          middle.css('left', '' + calcPercent(middlePos) + '%');
+          setBoxWidths();
 
-          function resize() {
-            var leftWidth = middlePos - 12,
-                rightWidth = totalWidth - middlePos - 22;
+          function setOuterWidth() {
+            outerWidth = element[0].offsetWidth;
+            middlePos = caclMiddlePos() || Math.floor(outerWidth / 2) - 5;
+          }
 
-            left.css('width', '' + leftWidth + 'px');
-            right.css('width', '' + rightWidth + 'px');
+          /* Get the pixel offset of the middle div. We need to look at the
+           * css value of the left attribute, and convert from percent value
+           * to pixel value based on the value of outerWidth.
+           */
+          function calcMiddlePos() {
+            if (middle.css('left') === '') return null;
+            var percent = /(\d*(?:\.\d*)?)\%/.exec(middle.css('left'))[1];
+            percent = parseFloat(percent) / 100;
+            return outerWidth * percent;
+          }
+
+          /* Figure out the widths of each box based on the position of the middle div.
+           */
+          function setBoxWidths() {
+            var leftWidth = middlePos - 10;
           }
         }
       };
