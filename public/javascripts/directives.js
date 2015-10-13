@@ -6,16 +6,16 @@ angular.module('ReadyouDirectives', [])
         link: function (scope, element, attrs) {
           var left = angular.element(element.children()[0]),
               middle = angular.element(element.children()[1]),
-              right = angular.element(element.children()[2]);
+              right = angular.element(element.children()[2]),
               outerWidth, middlePos;
 
           setOuterWidth();
-          middle.css('left', '' + calcPercent(middlePos) + '%');
+          middle.css('left', '' + toPercent(middlePos) + '%');
           setBoxWidths();
 
           function setOuterWidth() {
             outerWidth = element[0].offsetWidth;
-            middlePos = caclMiddlePos() || Math.floor(outerWidth / 2) - 5;
+            middlePos = calcMiddlePos() || Math.floor(outerWidth / 2) - 5;
           }
 
           /* Get the pixel offset of the middle div. We need to look at the
@@ -32,7 +32,17 @@ angular.module('ReadyouDirectives', [])
           /* Figure out the widths of each box based on the position of the middle div.
            */
           function setBoxWidths() {
-            var leftWidth = middlePos - 10;
+            var leftWidth = middlePos - 12,
+                rightWidth = outerWidth - middlePos - 22;
+
+            left.css('width', '' + toPercent(leftWidth) + '%');
+            right.css('width', '' + toPercent(rightWidth) + '%');
+          }
+
+          /* Calculate percent value from pixel value and outerWidth.
+           */
+          function toPercent(pixels) {
+            return pixels / outerWidth * 100;
           }
         }
       };
