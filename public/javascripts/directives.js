@@ -4,9 +4,10 @@ angular.module('ReadyouDirectives', [])
       return {
         templateUrl: 'partials/resizable-boxes',
         link: function (scope, element, attrs) {
-          var left = angular.element(element.children()[0]),
-              middle = angular.element(element.children()[1]),
-              right = angular.element(element.children()[2]),
+          var wrap = element.children()[0],
+              left = angular.element(wrap.children[0]),
+              middle = angular.element(wrap.children[1]),
+              right = angular.element(wrap.children[2]),
               outerWidth, middlePos;
 
           setOuterWidth();
@@ -14,7 +15,7 @@ angular.module('ReadyouDirectives', [])
           setBoxWidths();
 
           function setOuterWidth() {
-            outerWidth = element[0].offsetWidth;
+            outerWidth = wrap.offsetWidth;
             middlePos = calcMiddlePos() || Math.floor(outerWidth / 2) - 5;
           }
 
@@ -32,8 +33,8 @@ angular.module('ReadyouDirectives', [])
           /* Figure out the widths of each box based on the position of the middle div.
            */
           function setBoxWidths() {
-            var leftWidth = middlePos - 12,
-                rightWidth = outerWidth - middlePos - 22;
+            var leftWidth = middlePos - 2,
+                rightWidth = outerWidth - middlePos - 12;
 
             left.css('width', '' + toPercent(leftWidth) + '%');
             right.css('width', '' + toPercent(rightWidth) + '%');

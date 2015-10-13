@@ -30,6 +30,14 @@ html, body {
   right: 0px;
 }
 
+.resizable-wrap {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 10px;
+}
+
 .left-box, .right-box {
   position: absolute;
   top: 10px;
@@ -43,11 +51,11 @@ html, body {
 }
 
 .left-box {
-  left: 10px;
+  left: 0;
 }
 
 .right-box {
-  right: 10px;
+  right: 0;
 }
 
 .middle {
