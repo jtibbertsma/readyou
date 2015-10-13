@@ -1,6 +1,6 @@
 angular.module('ReadyouDirectives', [])
-  .directive('resizableBoxes', [
-    function resizableBoxesDirective() {
+  .directive('resizableBoxes', ['optimizedResize',
+    function resizableBoxesDirective(optimizedResize) {
       return {
         templateUrl: 'partials/resizable-boxes',
         link: function (scope, element, attrs) {
@@ -10,9 +10,9 @@ angular.module('ReadyouDirectives', [])
               right = angular.element(wrap.children[2]),
               outerWidth, middlePos;
 
-          setOuterWidth();
-          middle.css('left', '' + toPercent(middlePos) + '%');
-          setBoxWidths();
+          resize();
+
+          optimizedResize.add(resize);
 
           function setOuterWidth() {
             outerWidth = wrap.offsetWidth;
@@ -44,6 +44,13 @@ angular.module('ReadyouDirectives', [])
            */
           function toPercent(pixels) {
             return pixels / outerWidth * 100;
+          }
+
+          /* window resize callback */
+          function resize() {
+            setOuterWidth();
+            middle.css('left', '' + toPercent(middlePos) + '%');
+            setBoxWidths();
           }
         }
       };

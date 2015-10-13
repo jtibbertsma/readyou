@@ -1,3 +1,4 @@
 angular.module('Readyou', [
-  'ReadyouDirectives'
+  'ReadyouDirectives',
+  'ReadyouServices'
 ]);
