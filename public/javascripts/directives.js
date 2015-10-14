@@ -1,6 +1,6 @@
 angular.module('ReadyouDirectives', [])
-  .directive('resizableBoxes', ['optimizedResize',
-    function resizableBoxesDirective(optimizedResize) {
+  .directive('resizableBoxes', ['optimizedResize', '$window', '$document',
+    function resizableBoxesDirective(optimizedResize, $window, $document) {
       return {
         templateUrl: 'partials/resizable-boxes',
         link: function (scope, element, attrs) {
@@ -8,12 +8,41 @@ angular.module('ReadyouDirectives', [])
               left = angular.element(wrap.children[0]),
               middle = angular.element(wrap.children[1]),
               right = angular.element(wrap.children[2]),
-              outerWidth, middlePos;
+              outerWidth, middlePos, mouseIsMoving = false,
+              mouseIsDown = false;
+
+          optimizedResize.add(resize);
+          middle.on('mousedown', function () {
+            $document.on('mousemove', mousemove);
+            $document.on('mouseup', mouseup);
+          });
 
           resize();
 
-          optimizedResize.add(resize);
+          /* mouse action callbacks */
+          function mouseup() {
+            $document.off('mousemove', mousemove);
+            $document.off('mouseup', mouseup);
+          }
 
+          function mousemove(event) {
+            event.preventDefault();
+            if (!mouseIsMoving) {
+              mouseIsMoving = true;
+              $window.requestAnimationFrame(function () {
+                middlePos += event.offsetX - 5;
+                console.log(event.offsetX);
+                setMiddleLeft();
+                setBoxWidths();
+
+                mouseIsMoving = false;
+              });
+            }
+          }
+
+          /* Set the outerWidth and middlePos variables; used on initialization
+           * and window resize
+           */
           function setOuterWidth() {
             outerWidth = wrap.offsetWidth;
             middlePos = calcMiddlePos() || Math.floor(outerWidth / 2) - 5;
@@ -46,10 +75,17 @@ angular.module('ReadyouDirectives', [])
             return pixels / outerWidth * 100;
           }
 
+          /* Sets the left value of the middle div based on the middlePos
+           * variable.
+           */
+          function setMiddleLeft() {
+            middle.css('left', '' + toPercent(middlePos) + '%');
+          }
+
           /* window resize callback */
           function resize() {
             setOuterWidth();
-            middle.css('left', '' + toPercent(middlePos) + '%');
+            setMiddleLeft();
             setBoxWidths();
           }
         }
