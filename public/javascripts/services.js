@@ -1,4 +1,4 @@
-angular.module('ReadyouServices', [])
+angular.module('readyou.services', [])
   .factory('optimizedResize', ['$window',
     // throttled resize event, taken from
     // https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame

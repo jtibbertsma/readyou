@@ -1,4 +1,4 @@
-angular.module('Readyou', [
-  'ReadyouDirectives',
-  'ReadyouServices'
+angular.module('readyou', [
+  'readyou.resizable',
+  'readyou.services'
 ]);

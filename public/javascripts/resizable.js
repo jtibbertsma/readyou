@@ -1,4 +1,4 @@
-angular.module('ReadyouDirectives', [])
+angular.module('readyou.resizable', [])
   .directive('resizableBoxes', ['optimizedResize', '$window', '$document',
     function resizableBoxesDirective(optimizedResize, $window, $document) {
       // change OFFSET if we change the width of the sidebar, the middle
