@@ -1,6 +1,12 @@
 angular.module('ReadyouDirectives', [])
   .directive('resizableBoxes', ['optimizedResize', '$window', '$document',
     function resizableBoxesDirective(optimizedResize, $window, $document) {
+      // change this if we change the width of the sidebar, the middle
+      // div, or the margins on .resizable-wrap.
+      //
+      // (sidebar width) + (.resizable-wrap left margin) - (half of .middle width) + (1 pixel
+      // for border width)
+      var OFFSET = 237;
       return {
         templateUrl: 'partials/resizable-boxes',
         link: function (scope, element, attrs) {
@@ -30,8 +36,8 @@ angular.module('ReadyouDirectives', [])
             if (!mouseIsMoving) {
               mouseIsMoving = true;
               $window.requestAnimationFrame(function () {
-                middlePos += event.offsetX - 5;
-                console.log(event.offsetX);
+                middlePos = event.screenX - OFFSET;
+
                 setMiddleLeft();
                 setBoxWidths();
 
