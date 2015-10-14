@@ -1,11 +1,12 @@
 angular.module('ReadyouDirectives', [])
   .directive('resizableBoxes', ['optimizedResize', '$window', '$document',
     function resizableBoxesDirective(optimizedResize, $window, $document) {
-      // change this if we change the width of the sidebar, the middle
+      // change OFFSET if we change the width of the sidebar, the middle
       // div, or the margins on .resizable-wrap.
       //
-      // (sidebar width) + (.resizable-wrap left margin) - (half of .middle width) + (1 pixel
-      // for border width)
+      // (217px; sidebar width) + (10px; .resizable-wrap left margin) +
+      // (1px; border width) + (5px; half of middle width) +
+      // (5px; for reasons unknown)
       var OFFSET = 237;
       return {
         templateUrl: 'partials/resizable-boxes',
@@ -14,8 +15,7 @@ angular.module('ReadyouDirectives', [])
               left = angular.element(wrap.children[0]),
               middle = angular.element(wrap.children[1]),
               right = angular.element(wrap.children[2]),
-              outerWidth, middlePos, mouseIsMoving = false,
-              mouseIsDown = false;
+              outerWidth, middlePos, mouseIsMoving = false;
 
           optimizedResize.add(resize);
           middle.on('mousedown', function () {
@@ -36,7 +36,7 @@ angular.module('ReadyouDirectives', [])
             if (!mouseIsMoving) {
               mouseIsMoving = true;
               $window.requestAnimationFrame(function () {
-                middlePos = event.screenX - OFFSET;
+                middlePos = calcMiddlePosFromEvent(event);
 
                 setMiddleLeft();
                 setBoxWidths();
@@ -51,18 +51,29 @@ angular.module('ReadyouDirectives', [])
            */
           function setOuterWidth() {
             outerWidth = wrap.offsetWidth;
-            middlePos = calcMiddlePos() || Math.floor(outerWidth / 2) - 5;
+            middlePos = calcMiddlePosFromCss() || Math.floor(outerWidth / 2) - 5;
           }
 
           /* Get the pixel offset of the middle div. We need to look at the
            * css value of the left attribute, and convert from percent value
            * to pixel value based on the value of outerWidth.
            */
-          function calcMiddlePos() {
+          function calcMiddlePosFromCss() {
             if (middle.css('left') === '') return null;
             var percent = /(\d*(?:\.\d*)?)\%/.exec(middle.css('left'))[1];
             percent = parseFloat(percent) / 100;
             return outerWidth * percent;
+          }
+
+          /* Get the pixel offset of the middle div from the mouse event. Make sure
+           * not to allow the draggable bar to be dragged to far to the right or
+           * left.
+           */
+          function calcMiddlePosFromEvent(event) {
+            var mid = event.screenX - OFFSET;
+            mid = Math.max(mid, 175);
+            mid = Math.min(mid, outerWidth - 175);
+            return mid;
           }
 
           /* Figure out the widths of each box based on the position of the middle div.
@@ -85,7 +96,11 @@ angular.module('ReadyouDirectives', [])
            * variable.
            */
           function setMiddleLeft() {
-            middle.css('left', '' + toPercent(middlePos) + '%');
+            var percentValue = toPercent(middlePos);
+            percentValue = Math.max(percentValue, 10);
+            percentValue = Math.min(percentValue, 90);
+
+            middle.css('left', '' + percentValue + '%');
           }
 
           /* window resize callback */
