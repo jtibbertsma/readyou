@@ -96,11 +96,7 @@ angular.module('ReadyouDirectives', [])
            * variable.
            */
           function setMiddleLeft() {
-            var percentValue = toPercent(middlePos);
-            percentValue = Math.max(percentValue, 10);
-            percentValue = Math.min(percentValue, 90);
-
-            middle.css('left', '' + percentValue + '%');
+            middle.css('left', '' + toPercent(middlePos) + '%');
           }
 
           /* window resize callback */
