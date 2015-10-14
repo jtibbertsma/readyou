@@ -65,6 +65,10 @@ html, body {
   cursor: col-resize;
 }
 
+.middle:active {
+  cursor: default;
+}
+
 .middle::after {
   content: '';
   position: absolute;
