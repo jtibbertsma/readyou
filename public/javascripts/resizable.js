@@ -1,14 +1,14 @@
 angular.module('readyou.resizable', [])
   .directive('resizableBoxes', ['optimizedResize', '$window', '$document',
     function resizableBoxesDirective(optimizedResize, $window, $document) {
-      // change OFFSET if we change the width of the sidebar, the middle
-      // div, or the margins on .resizable-wrap. There's probably a better
-      // way to accomplish this, but this is fine for now.
+      // Change OFFSET if we change the width of the sidebar, the middle
+      // div, or the margins on .resizable-wrap. OFFSET is needed to calculate
+      // the position of the draggable bar relative to its parent div. There's
+      // probably a better way to do this.
       //
       // (217px; sidebar width) + (10px; .resizable-wrap left margin) +
-      // (1px; border width) + (5px; half of middle width) +
-      // (5px; for reasons unknown) = 237
-      var OFFSET = 237;
+      // (2px; border width) + (5px; half of middle bar width) = 234
+      var OFFSET = 234;
       return {
         templateUrl: 'partials/resizable-boxes',
         link: function (scope, element, attrs) {
@@ -26,7 +26,7 @@ angular.module('readyou.resizable', [])
 
           resize();
 
-          /* mouse action callbacks */
+          /* mouse event callbacks */
           function mouseup() {
             $document.off('mousemove', mousemove);
             $document.off('mouseup', mouseup);
