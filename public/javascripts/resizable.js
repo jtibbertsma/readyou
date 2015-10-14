@@ -2,11 +2,12 @@ angular.module('readyou.resizable', [])
   .directive('resizableBoxes', ['optimizedResize', '$window', '$document',
     function resizableBoxesDirective(optimizedResize, $window, $document) {
       // change OFFSET if we change the width of the sidebar, the middle
-      // div, or the margins on .resizable-wrap.
+      // div, or the margins on .resizable-wrap. There's probably a better
+      // way to accomplish this, but this is fine for now.
       //
       // (217px; sidebar width) + (10px; .resizable-wrap left margin) +
       // (1px; border width) + (5px; half of middle width) +
-      // (5px; for reasons unknown)
+      // (5px; for reasons unknown) = 237
       var OFFSET = 237;
       return {
         templateUrl: 'partials/resizable-boxes',
@@ -70,9 +71,14 @@ angular.module('readyou.resizable', [])
            * left.
            */
           function calcMiddlePosFromEvent(event) {
-            var mid = event.screenX - OFFSET;
-            mid = Math.max(mid, 175);
-            mid = Math.min(mid, outerWidth - 175);
+            var mid; 
+            if (outerWidth > 350) {
+              mid = event.screenX - OFFSET;
+              mid = Math.max(mid, 175);
+              mid = Math.min(mid, outerWidth - 175);
+            } else {
+              mid = Math.floor(outerWidth / 2) - 5;
+            }
             return mid;
           }
 
