@@ -16,7 +16,7 @@ angular.module('readyou.resizable', [])
               left = angular.element(wrap.children[0]),
               dragBar = angular.element(wrap.children[1]),
               right = angular.element(wrap.children[2]),
-              outerWidth, middlePos, mouseIsMoving = false;
+              outerWidth, dragBarPos, mouseIsMoving = false;
 
           optimizedResize.add(resize);
           dragBar.on('mousedown', function () {
@@ -37,7 +37,7 @@ angular.module('readyou.resizable', [])
             if (!mouseIsMoving) {
               mouseIsMoving = true;
               $window.requestAnimationFrame(function () {
-                middlePos = calcDragBarPosFromEvent(event);
+                dragBarPos = calcDragBarPosFromEvent(event);
 
                 setDragBarLeft();
                 setBoxWidths();
@@ -47,12 +47,12 @@ angular.module('readyou.resizable', [])
             }
           }
 
-          /* Set the outerWidth and middlePos variables; used on initialization
+          /* Set the outerWidth and dragBarPos variables; used on initialization
            * and window resize
            */
           function setOuterWidth() {
             outerWidth = wrap.offsetWidth;
-            middlePos = calcDragBarPosFromCss() || Math.floor(outerWidth / 2) - 5;
+            dragBarPos = calcDragBarPosFromCss() || Math.floor(outerWidth / 2) - 5;
           }
 
           /* Get the pixel offset of the dragBar. We need to look at the
@@ -85,8 +85,8 @@ angular.module('readyou.resizable', [])
           /* Figure out the widths of each box based on the position of the dragBar.
            */
           function setBoxWidths() {
-            var leftWidth = middlePos - 2,
-                rightWidth = outerWidth - middlePos - 12;
+            var leftWidth = dragBarPos - 2,
+                rightWidth = outerWidth - dragBarPos - 12;
 
             left.css('width', '' + toPercent(leftWidth) + '%');
             right.css('width', '' + toPercent(rightWidth) + '%');
@@ -98,11 +98,11 @@ angular.module('readyou.resizable', [])
             return pixels / outerWidth * 100;
           }
 
-          /* Sets the left value of the dragBar based on the middlePos
+          /* Sets the left value of the dragBar based on the dragBarPos
            * variable.
            */
           function setDragBarLeft() {
-            dragBar.css('left', '' + toPercent(middlePos) + '%');
+            dragBar.css('left', '' + toPercent(dragBarPos) + '%');
           }
 
           /* window resize callback */
