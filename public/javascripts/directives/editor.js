@@ -8,6 +8,7 @@ angular.module('readyou.editor', [])
 
           scope.$on('resizableBoxes:resize', function () {
             editor.resize();
+            editor.focus();
           });
         }
       }
