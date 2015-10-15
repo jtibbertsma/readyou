@@ -45,9 +45,9 @@ html, body {
   background: white;
   border: thin solid #aaa;
   width: 48%;
-  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(102,102,102,1);
-  -moz-box-shadow: inset 0px 1px 3px 0px rgba(102,102,102,1);
-  box-shadow: inset 0px 1px 3px 0px rgba(102,102,102,1);
+  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(102,102,102,0.45);
+  -moz-box-shadow: inset 0px 1px 3px 0px rgba(102,102,102,0.45);
+  box-shadow: inset 0px 1px 3px 0px rgba(102,102,102,0.45);
 }
 
 .left-box {
