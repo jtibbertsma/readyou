@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "angular": "~1.4",
-    "normalize.css": "~3.0"
+    "normalize.css": "~3.0",
+    "ace-builds": "~1.2"
   }
 }

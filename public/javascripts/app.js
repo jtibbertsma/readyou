@@ -1,4 +1,6 @@
 angular.module('readyou', [
+  'readyou.editor',
   'readyou.resizable',
-  'readyou.services'
+  'readyou.events',
+  'readyou.ace'
 ]);

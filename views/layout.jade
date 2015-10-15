@@ -5,8 +5,11 @@ html(ng-app='readyou')
     link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(type='text/javascript', src='/bower_components/angular/angular.js')
+    script(type='text/javascript', src='/bower_components/ace-builds/src-noconflict/ace.js')
     script(type='text/javascript', src='/javascripts/app.js')
-    script(type='text/javascript', src='/javascripts/resizable.js')
-    script(type='text/javascript', src='/javascripts/services.js')
+    script(type='text/javascript', src='/javascripts/directives/resizable.js')
+    script(type='text/javascript', src='/javascripts/directives/editor.js')
+    script(type='text/javascript', src='/javascripts/services/events.js')
+    script(type='text/javascript', src='/javascripts/services/ace.js')
   body
     block content
