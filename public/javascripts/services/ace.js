@@ -5,6 +5,7 @@ angular.module('readyou.ace', [])
         createEditor: function (editorId) {
           var editor = $window.ace.edit(editorId);
           editor.getSession().setMode("ace/mode/markdown");
+          return editor;
         }
       }
     }

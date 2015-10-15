@@ -41,6 +41,7 @@ angular.module('readyou.resizable', [])
 
                 setDragBarLeft();
                 setBoxWidths();
+                scope.$broadcast('resizableBoxes:resize');
 
                 mouseIsMoving = false;
               });
