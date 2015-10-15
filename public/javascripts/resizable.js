@@ -72,10 +72,10 @@ angular.module('readyou.resizable', [])
            */
           function calcDragBarPosFromEvent(event) {
             var mid; 
-            if (outerWidth > 350) {
+            if (outerWidth > 200) {
               mid = event.screenX - OFFSET;
-              mid = Math.max(mid, 175);
-              mid = Math.min(mid, outerWidth - 175);
+              mid = Math.max(mid, 100);
+              mid = Math.min(mid, outerWidth - 100);
             } else {
               mid = Math.floor(outerWidth / 2) - 5;
             }
