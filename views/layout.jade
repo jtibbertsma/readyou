@@ -4,7 +4,9 @@ html(ng-app='readyou')
     title= title
     link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/tabs.css')
     script(type='text/javascript', src='/bower_components/angular/angular.js')
+    script(type='text/javascript', src='/bower_components/angular-animate/angular-animate.js')
     script(type='text/javascript', src='/bower_components/ace-builds/src-noconflict/ace.js')
     script(type='text/javascript', src='/javascripts/app.js')
     script(type='text/javascript', src='/javascripts/controllers/sidebar.js')
@@ -12,5 +14,6 @@ html(ng-app='readyou')
     script(type='text/javascript', src='/javascripts/directives/editor.js')
     script(type='text/javascript', src='/javascripts/services/events.js')
     script(type='text/javascript', src='/javascripts/services/editorData.js')
+    
   body
     block content

@@ -1,0 +1,35 @@
+.sidebar-tab {
+  height: 35px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar-tab > p {
+  font-size: 13px;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.sidebar-tab.active {
+  font-weight: 600;
+  border: none;
+}
+
+.sidebar-tab, .tab-content {
+  border-bottom: thin solid #ccc;
+  padding: 0 8px;
+}
+
+.sidebar-tab.ng-hide-add, .sidebar-tab.ng-hide-remove {
+  transition: 0s ease-out all;
+}
+
+.sidebar-tab.ng-hide-add-active,
+.sidebar-tab.ng-hide-remove-active {
+  transition: 1s ease-out all;
+}
+
+.sidebar-tab.ng-hide-add { height: 0px; }
+.sidebar-tab.ng-hide-add.ng-hide-add-active { height: auto; }
+.sidebar-tab.ng-hide-remove { height: auto; }
+.sidebar-tab.ng-hide-remove.ng-hide-remove-active { height: 0px; }

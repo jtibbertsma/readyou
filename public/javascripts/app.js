@@ -3,5 +3,6 @@ angular.module('readyou', [
   'readyou.resizable',
   'readyou.events',
   'readyou.ace',
-  'readyou.sidebar'
+  'readyou.sidebar',
+  'ngAnimate'
 ]);

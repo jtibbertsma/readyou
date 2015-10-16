@@ -1,5 +1,6 @@
 html, body {
   height: 100%;
+  font-family: "Helvetica", "Arial", "FreeSans", "Verdana", "Tahoma", "Lucida Sans", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
 }
 
 .top-navbar {
@@ -17,6 +18,7 @@ html, body {
   width: 217px;
   top: 0px;
   bottom: 0px;
+  color: #333;
 }
 
 .main {
