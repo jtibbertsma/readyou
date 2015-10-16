@@ -4,7 +4,7 @@ angular.module('readyou.editor', [])
       return {
         link: function (scope, element, attrs) {
           element.css('position', 'absolute');
-          var editor = aceLib.createEditor(attrs.id);
+          var editor = aceLib.createEditor(element[0]);
 
           scope.$on('resizableBoxes:resize', function () {
             editor.resize();

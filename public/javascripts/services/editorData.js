@@ -1,13 +1,34 @@
 angular.module('readyou.ace', [])
-  .factory('aceLib', ['$window', '$timeout',
-    function aceLibFactory($window, $timeout) {
+  .factory('aceLib', ['$window', 'editSession', 'optimizedResize',
+    function aceLibFactory($window, editSession, optimizedResize) {
+      function createEditor(element) {
+        var Renderer = $window.ace.require('./virtual_renderer').VirtualRenderer,
+            Editor = $window.ace.require('./editor').Editor;
+
+        var editor = new Editor(new Renderer(element));
+        editor.setSession(editSession.session);
+
+        optimizedResize.add(function () {
+          editor.resize();
+        });
+
+        editor.focus();
+        return editor;
+      }
+
       return {
-        createEditor: function (editorId) {
-          var editor = $window.ace.edit(editorId);
-          editor.getSession().setMode("ace/mode/markdown");
-          editor.focus();
-          return editor;
-        }
+        createEditor: createEditor
+      }
+    }
+  ])
+
+  .factory('editSession', ['$window',
+    function editSessionFactory($window) {
+      var session = $window.ace.createEditSession('');
+      session.setMode('ace/mode/markdown');
+
+      return {
+        session: session
       }
     }
   ]);
