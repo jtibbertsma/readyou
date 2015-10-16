@@ -2,5 +2,6 @@ extends layout
 
 block content
   .top-navbar
-  .sidebar
+  .sidebar(ng-controller='TabCtrl as tabs')
+    include ./sidebar.jade
   .main(resizable-boxes)
