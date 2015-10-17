@@ -2,6 +2,7 @@
   height: 35px;
   cursor: pointer;
   text-decoration: none;
+  padding: 0 8px;
 }
 
 .sidebar-tab > p {
@@ -17,10 +18,42 @@
 
 .sidebar-tab, .tab-content {
   border-bottom: thin solid #ccc;
-  padding: 0 8px;
 }
 
-.sidebar-tab.ng-hide-add, .sidebar-tab.ng-hide-remove {
+.tab-content {
+  font-size: 0.75em;
+}
+
+.sidebar-col {
+  padding: 0 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+  vertical-align: top;
+  width: 92px;
+}
+
+.sidebar-col > legend,
+.sidebar-row > legend {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.radio {
+  min-height: 20px;
+  padding-left: 8px;
+}
+
+.radio label {
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.radio input[type=radio] {
+  position: absolute;
+  margin-left: -20px;
+}
+
+/*.sidebar-tab.ng-hide-add, .sidebar-tab.ng-hide-remove {
   transition: 0s ease-out all;
 }
 
@@ -32,4 +65,4 @@
 .sidebar-tab.ng-hide-add { height: 0px; }
 .sidebar-tab.ng-hide-add.ng-hide-add-active { height: auto; }
 .sidebar-tab.ng-hide-remove { height: auto; }
-.sidebar-tab.ng-hide-remove.ng-hide-remove-active { height: 0px; }
+.sidebar-tab.ng-hide-remove.ng-hide-remove-active { height: 0px; }*/

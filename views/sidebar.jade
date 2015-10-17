@@ -1,6 +1,57 @@
 // Settings Tab
 .sidebar-tab(ng-click="tabs.toggleTab('settings')", ng-class='{active: tabs.settings}')
   p Editor Settings
-.tab-content(ng-show='tabs.settings')
-  p This is some temporary content
-  p this is some more
+.tab-content(ng-show='tabs.settings', ng-controller='EditorSettingsCtrl')
+  .sidebar-row
+    .sidebar-col
+      legend Line wrap
+      .radio
+        label(for='lwr1')
+          input(
+            type='radio',
+            ng-model='opts.line_wrap',
+            id='lwr1',
+            name='lwr',
+            ng-value='true',
+            ng-checked='opts.line_wrap'
+          )
+          | On
+      .radio
+        label(for='lwr2')
+          input(
+            type='radio',
+            ng-model='opts.line_wrap',
+            id='lwr2',
+            name='lwr',
+            ng-value='false',
+            ng-checked='!opts.line_wrap'
+          )
+          | not On
+    .sidebar-col
+      legend Tab Size
+      
+  .sidebar-row
+    .sidebar-col
+      legend Soft tabs
+      .radio
+        label(for='sft1')
+          input(
+            type='radio',
+            ng-model='opts.soft_tabs',
+            id='sft1',
+            name='sft',
+            ng-value='true',
+            ng-checked='opts.soft_tabs'
+          )
+          | On
+      .radio
+        label(for='sft2')
+          input(
+            type='radio',
+            ng-model='opts.soft_tabs',
+            id='sft2',
+            name='sft',
+            ng-value='false',
+            ng-checked='!opts.soft_tabs'
+          )
+          | not On
