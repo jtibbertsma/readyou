@@ -38,6 +38,11 @@
   margin-bottom: 10px;
 }
 
+.side-select {
+  margin-top: -2px;
+  width: 100%;
+}
+
 .radio {
   min-height: 20px;
   padding-left: 8px;

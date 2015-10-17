@@ -9,27 +9,27 @@
         label(for='lwr1')
           input(
             type='radio',
-            ng-model='opts.line_wrap',
+            ng-model='opts.wrap',
             id='lwr1',
             name='lwr',
             ng-value='true',
-            ng-checked='opts.line_wrap'
+            ng-checked='opts.wrap'
           )
           | On
       .radio
         label(for='lwr2')
           input(
             type='radio',
-            ng-model='opts.line_wrap',
+            ng-model='opts.wrap',
             id='lwr2',
             name='lwr',
             ng-value='false',
-            ng-checked='!opts.line_wrap'
+            ng-checked='!opts.wrap'
           )
           | not On
     .sidebar-col
       legend Tab Size
-      
+      select.side-select(ng-model='opts.tabSize', ng-options='size for size in sizes')
   .sidebar-row
     .sidebar-col
       legend Soft tabs
@@ -37,21 +37,21 @@
         label(for='sft1')
           input(
             type='radio',
-            ng-model='opts.soft_tabs',
+            ng-model='opts.useSoftTabs',
             id='sft1',
             name='sft',
             ng-value='true',
-            ng-checked='opts.soft_tabs'
+            ng-checked='opts.useSoftTabs'
           )
           | On
       .radio
         label(for='sft2')
           input(
             type='radio',
-            ng-model='opts.soft_tabs',
+            ng-model='opts.useSoftTabs',
             id='sft2',
             name='sft',
             ng-value='false',
-            ng-checked='!opts.soft_tabs'
+            ng-checked='!opts.useSoftTabs'
           )
           | not On

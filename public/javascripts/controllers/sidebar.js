@@ -8,7 +8,9 @@ angular.module('readyou.sidebar', [])
 
   .controller('EditorSettingsCtrl', ['$scope',
     function EditorSettingsCtrl($scope) {
-      $scope.opts = {line_wrap: true, tab_size: 2, soft_tabs: true};
+      $scope.opts = {wrap: true, tabSize: 2, useSoftTabs: true};
+      $scope.sizes = [1, 2, 3, 4, 5, 6, 7, 8];
+
       $scope.$watchCollection('opts', function () {
         console.log($scope.opts);
       });
