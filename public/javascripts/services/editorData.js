@@ -1,12 +1,12 @@
 angular.module('readyou.ace', [])
-  .factory('aceLib', ['$window', 'editSession', 'optimizedResize',
-    function aceLibFactory($window, editSession, optimizedResize) {
+  .factory('aceLib', ['$window', 'editorData', 'optimizedResize',
+    function aceLibFactory($window, editorData, optimizedResize) {
       function createEditor(element) {
         var Renderer = $window.ace.require('./virtual_renderer').VirtualRenderer,
             Editor = $window.ace.require('./editor').Editor;
 
         var editor = new Editor(new Renderer(element));
-        editor.setSession(editSession.session);
+        editor.setSession(editorData.session);
 
         optimizedResize.add(function () {
           editor.resize();
@@ -22,8 +22,28 @@ angular.module('readyou.ace', [])
     }
   ])
 
-  .factory('editSession', ['$window',
-    function editSessionFactory($window) {
+  .factory('editorOpts', ['editorData',
+    function editorOptsFactory(editorData) {
+      return {
+        tabSize: 2,
+        useSoftTabs: true,
+        wrap: true,
+
+        set: function () {
+          var sessionOpts = {
+            tabSize: this.tabSize,
+            useSoftTabs: this.useSoftTabs,
+            wrap: this.wrap
+          };
+
+          editorData.session.setOptions(sessionOpts);
+        }
+      };
+    }
+  ])
+
+  .factory('editorData', ['$window',
+    function editorDataFactory($window) {
       var value = "Ace (Ajax.org Cloud9 Editor)\n\
 ============================\n\
 \n\

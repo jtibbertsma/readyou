@@ -6,13 +6,13 @@ angular.module('readyou.sidebar', [])
     };
   })
 
-  .controller('EditorSettingsCtrl', ['$scope',
-    function EditorSettingsCtrl($scope) {
-      $scope.opts = {wrap: true, tabSize: 2, useSoftTabs: true};
+  .controller('EditorSettingsCtrl', ['$scope', 'editorOpts',
+    function EditorSettingsCtrl($scope, editorOpts) {
+      $scope.opts = editorOpts;
       $scope.sizes = [1, 2, 3, 4, 5, 6, 7, 8];
 
       $scope.$watchCollection('opts', function () {
-        console.log($scope.opts);
+        $scope.opts.set();
       });
     }
   ]);
