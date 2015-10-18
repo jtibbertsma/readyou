@@ -1,6 +1,6 @@
 angular.module('readyou.ace', [])
-  .factory('editorBuilder', ['$window', 'editorData', 'editorOpts', 'optimizedResize',
-    function editorBuilderFactory($window, editorData, editorOpts, optimizedResize) {
+  .factory('editorBuilder', ['$window', 'editorData', 'editorOpts', 'optimizedResize', '$timeout',
+    function editorBuilderFactory($window, editorData, editorOpts, optimizedResize, $timeout) {
       function createEditor(element) {
         var value = "Ace (Ajax.org Cloud9 Editor)\n\
 ============================\n\
@@ -183,16 +183,20 @@ This project is tested with [Travis CI](http://travis-ci.org)\n\
         var session = $window.ace.createEditSession(value);
         session.setMode('ace/mode/markdown');
 
-        var editor = new Editor(new Renderer(element));
-        editor.setSession(session);
+        // Putting this code in a timeout and creating the editor a little later
+        // prevents a minor issue with the initial render when line wrap is on.
+        $timeout(function () {
+          var editor = new Editor(new Renderer(element));
+          editor.setSession(session);
+          editor.focus();
 
-        optimizedResize.add(function () {
-          editor.resize();
-        });
+          optimizedResize.add(function () {
+            editor.resize();
+          });
 
-        editorData.setMarkdownEditor(editor);
-        editorOpts.set();
-        return editor;
+          editorData.setMarkdownEditor(editor);
+          editorOpts.set();
+        }, 5);
       }
 
       return {
