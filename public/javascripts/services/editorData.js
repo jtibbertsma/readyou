@@ -1,50 +1,8 @@
 angular.module('readyou.ace', [])
-  .factory('aceLib', ['$window', 'editorData', 'optimizedResize',
-    function aceLibFactory($window, editorData, optimizedResize) {
+  .factory('editorBuilder', ['$window', 'editorData', 'editorOpts', 'optimizedResize',
+    function editorBuilderFactory($window, editorData, editorOpts, optimizedResize) {
       function createEditor(element) {
-        var Renderer = $window.ace.require('./virtual_renderer').VirtualRenderer,
-            Editor = $window.ace.require('./editor').Editor;
-
-        var editor = new Editor(new Renderer(element));
-        editor.setSession(editorData.session);
-
-        optimizedResize.add(function () {
-          editor.resize();
-        });
-
-        editor.focus();
-        return editor;
-      }
-
-      return {
-        createEditor: createEditor
-      }
-    }
-  ])
-
-  .factory('editorOpts', ['editorData',
-    function editorOptsFactory(editorData) {
-      return {
-        tabSize: 2,
-        useSoftTabs: true,
-        wrap: true,
-
-        set: function () {
-          var sessionOpts = {
-            tabSize: this.tabSize,
-            useSoftTabs: this.useSoftTabs,
-            wrap: this.wrap
-          };
-
-          editorData.session.setOptions(sessionOpts);
-        }
-      };
-    }
-  ])
-
-  .factory('editorData', ['$window',
-    function editorDataFactory($window) {
-      var value = "Ace (Ajax.org Cloud9 Editor)\n\
+        var value = "Ace (Ajax.org Cloud9 Editor)\n\
 ============================\n\
 \n\
 _Note_: The new site at http://ace.c9.io contains all the info below along with an embedding guide and all the other resources you need to get started with Ace.\n\
@@ -219,11 +177,56 @@ Continuous Integration status\n\
 This project is tested with [Travis CI](http://travis-ci.org)\n\
 [![Build Status](https://secure.travis-ci.org/ajaxorg/ace.png?branch=master)](http://travis-ci.org/ajaxorg/ace)\n\
 "
-      var session = $window.ace.createEditSession(value);
-      session.setMode('ace/mode/markdown');
+        var Renderer = $window.ace.require('./virtual_renderer').VirtualRenderer,
+            Editor = $window.ace.require('./editor').Editor;
+
+        var session = $window.ace.createEditSession(value);
+        session.setMode('ace/mode/markdown');
+
+        var editor = new Editor(new Renderer(element));
+        editor.setSession(session);
+
+        optimizedResize.add(function () {
+          editor.resize();
+        });
+
+        editorData.setMarkdownEditor(editor);
+        editorOpts.set();
+        return editor;
+      }
 
       return {
-        session: session
+        build: createEditor
+      }
+    }
+  ])
+
+  .factory('editorOpts', ['editorData',
+    function editorOptsFactory(editorData) {
+      var opts = {
+        tabSize: 2,
+        useSoftTabs: true,
+        wrap: true
+      };
+
+      return {
+        opts: opts,
+        set: function () {
+          if (editorData.markdownEditor) {
+            editorData.markdownEditor.setOptions(opts);
+          }
+        }
+      };
+    }
+  ])
+
+  .factory('editorData', [
+    function editorDataFactory() {
+      return {
+        markdownEditor: null,
+        setMarkdownEditor: function (editor) {
+          this.markdownEditor = editor;
+        }
       }
     }
   ]);

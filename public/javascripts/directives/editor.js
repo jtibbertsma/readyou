@@ -1,10 +1,10 @@
 angular.module('readyou.editor', [])
-  .directive('markdownEditor', ['aceLib',
-    function markdownEditorDirective(aceLib) {
+  .directive('markdownEditor', ['editorBuilder',
+    function markdownEditorDirective(editorBuilder) {
       return {
         link: function (scope, element, attrs) {
           element.css('position', 'absolute');
-          var editor = aceLib.createEditor(element[0]);
+          var editor = editorBuilder.build(element[0]);
 
           scope.$on('resizableBoxes:resize', function () {
             editor.resize();
