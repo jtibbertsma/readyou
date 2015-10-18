@@ -4,5 +4,6 @@ angular.module('readyou', [
   'readyou.events',
   'readyou.ace',
   'readyou.sidebar',
+  'readyou.document',
   'ngAnimate'
 ]);
