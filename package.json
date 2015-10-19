@@ -28,7 +28,7 @@
     "serve-favicon": "~2.3.0",
     "bower": "~1.5",
     "grunt": "~0.4",
-    "pegjs": "~0.9",
-    "grunt-peg": "~2.0"
+    "jison": "~0.4",
+    "grunt-jison": "~1.3"
   }
 }

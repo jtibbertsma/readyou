@@ -1,13 +1,12 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
-    peg: {
+    jison: {
       markdown: {
-        src: 'grammar/markdown.peg',
-        dest: 'public/javascripts/markdownParser.js'
+        files: { 'grammar/markdown.jison': 'public/javascripts/markdownParser.js' }
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-peg');
+  grunt.loadNpmTasks('grunt-jison');
 };
