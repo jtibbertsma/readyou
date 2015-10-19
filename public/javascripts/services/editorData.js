@@ -21,6 +21,8 @@ angular.module('readyou.ace', [])
 
           editorData.setMarkdownEditor(editor);
           editorOpts.set();
+
+          $window.editor = editor;
         }, 5);
       }
 

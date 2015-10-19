@@ -26,6 +26,9 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "bower": "~1.5"
+    "bower": "~1.5",
+    "grunt": "~0.4",
+    "pegjs": "~0.9",
+    "grunt-peg": "~2.0"
   }
 }
