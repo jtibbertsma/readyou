@@ -1,6 +1,5 @@
 angular.module('readyou.sidebar', [])
   .controller('TabCtrl', function TabCtrl() {
-    this.settings = true;
     this.toggleTab = function (tabName) {
       this[tabName] = !this[tabName];
     };
