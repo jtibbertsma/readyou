@@ -62,7 +62,7 @@ angular.module('readyou.resizable', [])
            */
           function calcDragBarPosFromCss() {
             if (dragBar.css('left') === '') return null;
-            var percent = /(\d*(?:\.\d*)?)\%/.exec(dragBar.css('left'))[1];
+            var percent = /(\d*(?:\.\d+)?)\%/.exec(dragBar.css('left'))[1];
             percent = parseFloat(percent) / 100;
             return outerWidth * percent;
           }
