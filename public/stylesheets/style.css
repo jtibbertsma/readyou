@@ -58,6 +58,11 @@ html, body {
 
 .right-box {
   right: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 15px;
+  overflow: scroll;
 }
 
 .drag-bar {

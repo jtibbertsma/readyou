@@ -56,8 +56,10 @@ angular.module('readyou.ace', [])
     function editorDataFactory() {
       return {
         markdownEditor: null,
+        markdownDocument: null,
         setMarkdownEditor: function (editor) {
           this.markdownEditor = editor;
+          this.markdownDocument = editor.session.getDocument();
         }
       }
     }
