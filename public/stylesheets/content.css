@@ -1,4 +1,92 @@
 .generated-content {
-  margin: 0 15px;
+  padding: 30px;
   overflow: scroll;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  font: 16px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.generated-content > *:first-child {
+  margin-top: 0 !important;
+}
+
+.generated-content h1,
+.generated-content h2,
+.generated-content h3,
+.generated-content h4,
+.generated-content h5,
+.generated-content h6 {
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.generated-content p,
+.generated-content blockquote,
+.generated-content ul,
+.generated-content ol,
+.generated-content dl,
+.generated-content table,
+.generated-content pre {
+  margin: 0 0 16px 0;
+}
+
+.generated-content h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.generated-content h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.generated-content h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.generated-content h4 {
+  font-size: 1.25em;
+}
+
+.generated-content blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+  margin: 0;
+}
+
+.generated-content pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  word-wrap: normal;
+}
+
+.generated-content pre > code {
+  background-color: #f7f7f7
+}
+
+.generated-content code {
+  font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.generated-content {
+  padding-left: 2em;
 }

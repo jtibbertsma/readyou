@@ -3,6 +3,16 @@ html, body {
   font-family: "Helvetica", "Arial", "FreeSans", "Verdana", "Tahoma", "Lucida Sans", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
 }
 
+a {
+  color: #4078c0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  outline: 0;
+}
+
 .top-navbar {
   background: #4679bd;
   position: absolute;

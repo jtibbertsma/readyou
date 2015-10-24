@@ -4,6 +4,7 @@ angular.module('readyou.renderer', [])
       return {
         link: function (scope, element, attrs) {
           var mdDocument = null;
+          attrs.$addClass('generated-content');
 
           scope.editorData = editorData;
           scope.$watch('editorData.markdownDocument', setDocument);
