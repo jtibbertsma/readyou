@@ -10,6 +10,7 @@ angular.module('readyou.ace', [])
 
         // Putting this code in a timeout and creating the editor a little later
         // prevents a minor issue with the initial render when line wrap is on.
+        // TODO: this doesn't actually fix the problem
         $timeout(function () {
           var editor = new Editor(new Renderer(element));
           editor.setSession(session);
