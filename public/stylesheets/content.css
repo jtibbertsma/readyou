@@ -32,6 +32,7 @@
   margin: 0 0 16px 0;
 }
 
+
 .generated-content h1 {
   padding-bottom: 0.3em;
   font-size: 2.25em;
@@ -87,6 +88,11 @@
   border-radius: 3px;
 }
 
-.generated-content {
+.generated-content ul {
   padding-left: 2em;
+}
+
+.generated-content > table > tbody > tr > td,
+.generated-content > table > thead > tr > th {
+  padding-right: 15px;
 }
