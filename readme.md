@@ -10,8 +10,8 @@ See how your compiled markdown document appears as you type it out. No longer wi
 
 Users can
 
-- [ ] Edit markdown documents.
-- [ ] See the output of their document in real time.
+- [x] Edit markdown documents.
+- [x] See the output of their document in real time.
 - [ ] Github integration
   - [ ] Sign in with github (OAuth)
   - [ ] See a list of readmes from their github repositories
